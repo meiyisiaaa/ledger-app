@@ -21,10 +21,10 @@ if (!source.includes("storeFile file(System.getenv(\"ANDROID_KEYSTORE_PATH\"))")
     /signingConfigs\s*\{\s*debug\s*\{([\s\S]*?)\n\s*\}\s*\n\s*\}/,
     (match) => `${match.replace(/\n\s*\}\s*$/, "")}
         release {
-            storeFile file(System.getenv("ANDROID_KEYSTORE_PATH"))
-            storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
-            keyAlias System.getenv("ANDROID_KEY_ALIAS")
-            keyPassword System.getenv("ANDROID_KEY_PASSWORD")
+            storeFile file(System.getenv("ANDROID_KEYSTORE_PATH").trim())
+            storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD").trim()
+            keyAlias System.getenv("ANDROID_KEY_ALIAS").trim()
+            keyPassword System.getenv("ANDROID_KEY_PASSWORD").trim()
         }
     }`,
   );
