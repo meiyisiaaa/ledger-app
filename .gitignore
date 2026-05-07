@@ -9,6 +9,7 @@ release
 *.keystore
 *.jks
 *.pem
+*.base64.txt
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
