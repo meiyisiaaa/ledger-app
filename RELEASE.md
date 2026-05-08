@@ -71,3 +71,15 @@ npm run release:local
 ```
 
 This writes files to `release/`. If an Android APK or AAB already exists under `mobile/android/app/build/outputs`, it is copied into the package folder.
+
+## Pre-Release Checklist
+
+Before publishing a tag for a small-circle Android release:
+
+- Confirm `mobile/version.ts`, `mobile/app.json`, and the release tag use the same version.
+- Confirm GitHub repository secrets are set: `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`.
+- Run local checks: `npm run test:core`, `cd mobile && npx tsc --noEmit`, `npm run build`, `git diff --check`.
+- Export a backup from the current app, clear local ledger entries, import the backup, and confirm transactions, accounts, templates, categories, theme, and budget are restored.
+- Install the generated APK on a real Android phone, register/login, add one expense, restart the app, and confirm data is still present.
+- Confirm the GitHub Release contains APK, AAB, web zip, and `SHA256SUMS.txt`.
+- Share `INSTALL.md` with testers so they understand APK installation, local-only storage, and backup recovery.

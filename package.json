@@ -7,6 +7,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
+    "test:core": "node packages/ledger-core/test/run-tests.cjs",
     "release:local": "powershell -ExecutionPolicy Bypass -File scripts/package-local-release.ps1"
   },
   "dependencies": {

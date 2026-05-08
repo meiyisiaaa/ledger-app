@@ -16,6 +16,7 @@ if (!Number.isInteger(versionCode) || versionCode < 1) {
 
 const appJsonPath = join(root, "mobile", "app.json");
 const packageJsonPath = join(root, "mobile", "package.json");
+const versionTsPath = join(root, "mobile", "version.ts");
 
 const appJson = JSON.parse(readFileSync(appJsonPath, "utf8"));
 appJson.expo.version = version;
@@ -26,5 +27,11 @@ writeFileSync(appJsonPath, `${JSON.stringify(appJson, null, 2)}\n`);
 const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
 packageJson.version = version;
 writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
+
+const versionTs = readFileSync(versionTsPath, "utf8").replace(
+  /CURRENT_VERSION = ".*?"/,
+  `CURRENT_VERSION = "${version}"`,
+);
+writeFileSync(versionTsPath, versionTs);
 
 console.log(`Mobile version set to ${version} (${versionCode})`);
